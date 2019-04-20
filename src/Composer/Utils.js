@@ -12,6 +12,7 @@ function mod (x, n) {
     return (x % n + n) % n;
 }
 
+//dead code?
 function randomFromArray (arr) {
     return arr[Math.floor((Math.random()*arr.length))];
 }
