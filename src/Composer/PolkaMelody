@@ -1,0 +1,23 @@
+var Tonal = require("tonal");
+var MidiWriter = require('midi-writer-js');
+var Utils = require('./Utils');
+
+var noteRange = Tonal.Scale.notes("C major").map( function (note) {return note + "5"} );
+console.log("melody range: " + noteRange);
+
+module.exports = {
+    Bar: function (root, prevNote) {
+        var currentNote = Utils.getNearestChordTone(noteRange, root, prevNote, Math.random() >= 0.5 ? "up" : "down");
+        return {
+            noteEvents: [
+                new MidiWriter.NoteEvent({
+                    pitch: currentNote,
+                    duration: '1',
+                    channel: 1,
+                    velocity: 100,
+                }),
+            ],
+            currentNote: currentNote,
+        };
+    }
+}
