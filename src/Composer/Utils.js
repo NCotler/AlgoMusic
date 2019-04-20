@@ -12,6 +12,10 @@ function mod (x, n) {
     return (x % n + n) % n;
 }
 
+function randomFromArray (arr) {
+    return arr[Math.floor((Math.random()*arr.length))];
+}
+
 function getNearestChordTone(range, root, prevNote, direction) {
     var chordToneIndex = getChordTones(range, root).map(function (chordTone) {return range.indexOf(chordTone)});
     var prevNoteIndex = range.indexOf(prevNote);

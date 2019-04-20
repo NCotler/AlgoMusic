@@ -17,7 +17,6 @@ module.exports = {
                     velocity: 100,
                 }),
             ],
-            currentNote: currentNote,
         };
     }
 }

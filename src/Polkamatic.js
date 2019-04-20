@@ -17,8 +17,13 @@ function getBarsOfPolkaMelody(chordProgression) {
     for (var i = 0; i < chordProgression.length; i++) {
         temp = PolkaMelody.Bar(chordProgression[i], prevNote);
         bars.push(temp.noteEvents);
-        prevNote = temp.currentNote;
+        prevNote = temp.noteEvents[0].pitch;
     }
+    return bars;
+}
+
+function divideBarsOfMelody(bars) {
+    //console.log(bars[0][0].pitch);
     return bars;
 }
 
@@ -41,7 +46,7 @@ function getBarsOfPolkaBass(chordProgression) {
 //Todo: getBars functions could probably one func instead of three
 
 melody.addEvent(flatten([
-        getBarsOfPolkaMelody(chordProgression)
+        divideBarsOfMelody(getBarsOfPolkaMelody(chordProgression))
     ]), function (event, index) {
         return {sequential: true};
     }
