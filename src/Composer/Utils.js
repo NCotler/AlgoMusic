@@ -1,3 +1,17 @@
+var Tonal = require("tonal");
+
+function getNextScaleTone(range, currentNote, direction) {
+    if(direction === "up") {
+        return range[mod(range.indexOf(currentNote[0]) + 1, range.length)];
+    }
+    if(direction === "down") {
+        return range[mod(range.indexOf(currentNote[0]) - 1, range.length)];
+    }
+    else {
+        console.log("up or down not found");
+    }
+}
+
 function getChordTones(range, root) {
     return [range[root - 1], range[(root + 1) % range.length], range[(root + 3) % range.length]];
 }
@@ -18,9 +32,9 @@ function randomFromArray (arr) {
 }
 
 function getNearestChordTone(range, root, prevNote, direction) {
-    var chordToneIndex = getChordTones(range, root).map(function (chordTone) {return range.indexOf(chordTone)});
+    var chordToneIndices = getChordTones(range, root).map(function (chordTone) {return range.indexOf(chordTone)});
     var prevNoteIndex = range.indexOf(prevNote);
-    if (chordToneIndex.includes(prevNoteIndex)) {
+    if (chordToneIndices.includes(prevNoteIndex)) {
         return prevNote;
     } else {
         if(direction === "up") {
@@ -36,4 +50,5 @@ module.exports = {
     getChordTones: getChordTones,
     getRootAndFifth: getRootAndFifth,
     getNearestChordTone: getNearestChordTone,
+    getNextScaleTone: getNextScaleTone,
 }
