@@ -1,10 +1,17 @@
 var Tonal = require("tonal");
 
 function getNextScaleTone(range, currentNote, direction) {
+    //todo: get rid of having to use currentNote[0] just use currentNote
     if(direction === "up") {
+        if((range.indexOf(currentNote[0]) + 1) >= range.length) {
+            return currentNote;
+        }
         return range[mod(range.indexOf(currentNote[0]) + 1, range.length)];
     }
     if(direction === "down") {
+        if((range.indexOf(currentNote[0]) - 1) <= 0) {
+            return currentNote;
+        }
         return range[mod(range.indexOf(currentNote[0]) - 1, range.length)];
     }
     else {

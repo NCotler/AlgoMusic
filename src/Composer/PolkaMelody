@@ -38,7 +38,7 @@ function divideBarsOfMelody(bars) {
     var currentPitch;
     var currentDuration;
     for (var i = 0; i < bars.length; i++) {
-        if (Math.random() >= 0.66 ? false : true) {
+        if (Math.random() >= 0.33 ? false : true) {
             currentPitch = bars[i].pitch;
             currentDuration = bars[i].duration;
             bars.splice(i, 1, [new MidiWriter.NoteEvent({
