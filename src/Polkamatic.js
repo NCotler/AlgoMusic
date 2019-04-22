@@ -28,9 +28,14 @@ function getBarsOfPolkaBass(chordProgression) {
 
 //Todo: getBars functions could probably one func instead of three
 
-melody.addEvent(flatten([
-        PolkaMelody.divideBarsOfMelody(PolkaMelody.getBarsOfPolkaMelody(chordProgression))
-    ]), function (event, index) {
+melody.addEvent(
+    flatten(PolkaMelody.divideBarsOfMelody(
+    flatten(PolkaMelody.divideBarsOfMelody(
+    flatten(PolkaMelody.divideBarsOfMelody(
+        flatten(PolkaMelody.divideBarsOfMelody(
+            flatten(PolkaMelody.getBarsOfPolkaMelody(chordProgression))
+        )))))))
+    ), function (event, index) {
         return {sequential: true};
     }
 );
